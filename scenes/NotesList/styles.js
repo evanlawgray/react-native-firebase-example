@@ -4,11 +4,11 @@ const {height, width} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.8,
     height: height,
     width: width,
     backgroundColor: '#FFF',
-    paddingVertical: height / 25,
+    paddingTop: height / 25,
     paddingHorizontal: width / 20
   },
   separator: {

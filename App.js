@@ -15,6 +15,8 @@ import {
 
 import HeaderBar from './components/HeaderBar';
 import NotesList from './scenes/NotesList';
+import CreateButton from './components/CreateButton';
+import CreateNoteModal from './scenes/CreateNote';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -24,13 +26,29 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+  constructor() {
+    super();
+
+    this.state = {
+      showModal: false,
+      notes: []
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <HeaderBar />
-        <View style={styles.contentWrapper}>
-          <NotesList />
-        </View>
+          {
+            this.state.showModal ?
+              <View style={styles.contentWrapper}>
+                <CreateNoteModal />
+              </View> :
+              <View style={styles.contentWrapper}>
+                <NotesList />
+                <CreateButton />
+              </View>
+          }
       </View>
     );
   }
@@ -39,7 +57,7 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
