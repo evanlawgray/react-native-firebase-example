@@ -35,6 +35,10 @@ export default class App extends Component<{}> {
     }
   }
 
+  showCreateModal() {
+    this.setState({showModal: true})
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -46,7 +50,7 @@ export default class App extends Component<{}> {
               </View> :
               <View style={styles.contentWrapper}>
                 <NotesList />
-                <CreateButton />
+                <CreateButton onPressButton={() => this.showCreateModal()} />
               </View>
           }
       </View>
