@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 
+import {styles} from './styles';
+
 import {View, ScrollView, Text, SectionList} from 'react-native';
 
 import ListItem from '../../components/ListItem';
@@ -17,8 +19,6 @@ const mockList = [{
       {title: 'a note', text: 'note1'}, {title: 'another note', text: 'note2'}, {title: 'some note', text: 'note3'}
     ]}];
 
-import {styles} from './styles';
-
 class NotesList extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class NotesList extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.notesListWrapper}>
         <SectionList
           sections={this.state.notes}
           renderItem={({item}) => <ListItem itemData={item} />}

@@ -1,3 +1,3 @@
-import NotesList from './NotesList';
+import NotesListContainer from './NotesListContainer';
 
-export default NotesList;
+export default NotesListContainer;

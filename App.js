@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
+  Dimensions,
   Text,
   View,
   StatusBar
@@ -16,10 +17,28 @@ import {
 import firebase from 'firebase';
 
 import LoginContainer from './scenes/Login.js';
+import NotesListContainer from './scenes/NotesList';
 import HeaderBar from './components/HeaderBar';
-import NotesList from './scenes/NotesList';
-import CreateButton from './components/CreateButton';
-import CreateNoteModal from './scenes/CreateNote';
+
+import { StackNavigator } from 'react-navigation';
+
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: NotesListContainer,
+    navigationOptions: {
+      header: HeaderBar
+    }
+  },
+  Login: {
+    screen: LoginContainer,
+    navigationOptions: {
+      header: HeaderBar
+    }
+  }
+},{
+  initialRouteName: 'Login',
+  headerMode: 'float'
+});
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -55,24 +74,20 @@ export default class App extends Component<{}> {
     firebase.initializeApp(config);
   }
 
-  showCreateModal() {
-    this.setState({showModal: true})
-  }
-
   render() {
     return (
-      <View style={styles.container}>
-        <HeaderBar />
-        <LoginContainer />
-
+      <View>
+        <RootNavigator />
       </View>
     );
   }
 }
 
+const {width} = Dimensions.get('window');
 const styles = StyleSheet.create({
-  container: {
+  appWrapper: {
     flex: 1,
+    width: width,
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',

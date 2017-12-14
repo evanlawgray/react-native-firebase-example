@@ -5,6 +5,8 @@ import {styles} from './styles';
 
 import {View, Text, TextInput, Modal, TouchableOpacity} from 'react-native';
 
+import CommonButton from '../../components/CommonButton';
+
 class CreateNoteContainer extends Component {
   constructor(props) {
     super(props);
@@ -42,11 +44,10 @@ class CreateNoteContainer extends Component {
         >
         </TextInput>
 
-        <TouchableOpacity style={styles.saveButton}>
-          <Text style={styles.buttonText}>
-            SAVE
-          </Text>
-        </TouchableOpacity>
+        <CommonButton
+          onPress={() => {}}
+          buttonText={'save'.toUpperCase()}
+        />
       </View>
     )
   }

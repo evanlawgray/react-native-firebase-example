@@ -3,12 +3,19 @@ import {StyleSheet, Dimensions} from 'react-native';
 const {height, width} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  container: {
+  contentWrapper: {
+    marginTop: 80,
+    height: height - 80,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  notesListWrapper: {
     flex: 0.8,
     width: width,
     backgroundColor: '#FFF',
-    paddingTop: height / 25,
-    paddingHorizontal: width / 20
+    paddingTop: height * 0.03,
+    paddingHorizontal: height * 0.03
   },
   separator: {
     height: 0,
