@@ -13,6 +13,9 @@ import {
   StatusBar
 } from 'react-native';
 
+import firebase from 'firebase';
+
+import LoginContainer from './scenes/Login.js';
 import HeaderBar from './components/HeaderBar';
 import NotesList from './scenes/NotesList';
 import CreateButton from './components/CreateButton';
@@ -35,6 +38,23 @@ export default class App extends Component<{}> {
     }
   }
 
+  componentDidMount() {
+    /**
+     * Initialize firebase app
+     */
+
+    const config = {
+        apiKey: "AIzaSyBueWU4tsKsT2pxvWYSkblJUBhI0cksqNU",
+        authDomain: "notes-app-afcb4.firebaseapp.com",
+        databaseURL: "https://notes-app-afcb4.firebaseio.com",
+        projectId: "notes-app-afcb4",
+        storageBucket: "notes-app-afcb4.appspot.com",
+        messagingSenderId: "218040939865"
+    };
+
+    firebase.initializeApp(config);
+  }
+
   showCreateModal() {
     this.setState({showModal: true})
   }
@@ -43,16 +63,8 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.container}>
         <HeaderBar />
-          {
-            this.state.showModal ?
-              <View style={styles.contentWrapper}>
-                <CreateNoteModal />
-              </View> :
-              <View style={styles.contentWrapper}>
-                <NotesList />
-                <CreateButton onPressButton={() => this.showCreateModal()} />
-              </View>
-          }
+        <LoginContainer />
+
       </View>
     );
   }

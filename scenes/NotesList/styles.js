@@ -5,7 +5,6 @@ const {height, width} = Dimensions.get('window');
 export const styles = StyleSheet.create({
   container: {
     flex: 0.8,
-    height: height,
     width: width,
     backgroundColor: '#FFF',
     paddingTop: height / 25,
