@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 
-import firebase from 'firebase';
+import firebase from '../../firebase/init';
 
 import {View, TouchableOpacity, ActivityIndicator} from 'react-native';
 
@@ -18,7 +18,8 @@ class LoginContainer extends Component {
       email: '',
       password: '',
       error: '',
-      loading: false
+      loading: false,
+      userInfo: null
     }
   }
 
@@ -29,17 +30,17 @@ class LoginContainer extends Component {
     const{email, password} = this.state;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then(({uid}) => {
         this.setState({error: '', loading: false});
         navigator.navigate('Home');
       })
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email,password)
-          .then(() => {
-            this.setState({error: '', loading: false})
+          .then(({uid}) => {
+            this.setState({error: '', loading: false});
             navigator.navigate('Home');
           })
-          .catch(() => this.setState({error: 'Authentication failed', loading: false}))
+          .catch((error) => this.setState({error: error.message, loading: false}))
       });
   }
 
@@ -62,7 +63,6 @@ class LoginContainer extends Component {
           onChangeText={password => this.setState({password})}
           secureTextEntry={true}
         />
-
         {
           this.state.loading ?
             <ActivityIndicator

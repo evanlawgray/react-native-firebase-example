@@ -14,31 +14,9 @@ import {
   StatusBar
 } from 'react-native';
 
-import firebase from 'firebase';
+import firebase from './firebase/init';
 
-import LoginContainer from './scenes/Login.js';
-import NotesListContainer from './scenes/NotesList';
-import HeaderBar from './components/HeaderBar';
-
-import { StackNavigator } from 'react-navigation';
-
-const RootNavigator = StackNavigator({
-  Home: {
-    screen: NotesListContainer,
-    navigationOptions: {
-      header: HeaderBar
-    }
-  },
-  Login: {
-    screen: LoginContainer,
-    navigationOptions: {
-      header: HeaderBar
-    }
-  }
-},{
-  initialRouteName: 'Login',
-  headerMode: 'float'
-});
+import { RootNavigator } from './navigation/navigator';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -52,26 +30,8 @@ export default class App extends Component<{}> {
     super();
 
     this.state = {
-      showModal: false,
-      notes: []
+      showModal: false
     }
-  }
-
-  componentDidMount() {
-    /**
-     * Initialize firebase app
-     */
-
-    const config = {
-        apiKey: "AIzaSyBueWU4tsKsT2pxvWYSkblJUBhI0cksqNU",
-        authDomain: "notes-app-afcb4.firebaseapp.com",
-        databaseURL: "https://notes-app-afcb4.firebaseio.com",
-        projectId: "notes-app-afcb4",
-        storageBucket: "notes-app-afcb4.appspot.com",
-        messagingSenderId: "218040939865"
-    };
-
-    firebase.initializeApp(config);
   }
 
   render() {
