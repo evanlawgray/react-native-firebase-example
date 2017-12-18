@@ -16,7 +16,7 @@ function zeroFill(num) {
   return(num < 10 ? '0' : '') + num;
 }
 
-function now() {
+function getDateString() {
   const date = new Date();
 
   return date.getFullYear() + '-' +
@@ -33,26 +33,35 @@ class CreateNoteContainer extends Component {
     this.state = {
       noteTitle: '',
       noteText: '',
-      userId: userId
+      errorMessage: '',
+      userId: this.props.userId
     }
   }
 
   saveNote() {
     const userId = this.state.userId;
     const noteId = Date.now() + userId.toString();
-    const dateString = now();
+    const dateString = getDateString();
     const noteTitle = this.state.noteTitle;
     const noteText = this.state.noteText;
 
-    if(userId) db.ref(`notes/${userId}/${noteId}`).set({
-      title: noteTitle,
-      text: noteText,
-      date: dateString
-    });
+    try {
+      if(userId) {
+        db.ref(`notes/${userId}/${noteId}`).set({
+          title: noteTitle,
+          text: noteText,
+          date: dateString
+        }).then(() => this.props.hideSelf())
+        .catch(e => {
+          throw new Error(e)
+        })
+      }
+    } catch(e) {
+      this.setState({errorMessage: 'Sorry, this note couldn\'t be saved :' + e.message});
+    }
   }
 
   render() {
-    const props = this.props;
 
     return (
       <View
@@ -76,7 +85,11 @@ class CreateNoteContainer extends Component {
           onChangeText={text => this.setState({noteText: text})}
           value={this.state.noteText}
         />
-
+        {
+          this.state.errorMessage ?
+            <Text style={styles.errorText}>An error has ocurred</Text> :
+            null
+        }
         <CommonButton
           onPress={() => this.saveNote()}
           buttonText={'save'.toUpperCase()}

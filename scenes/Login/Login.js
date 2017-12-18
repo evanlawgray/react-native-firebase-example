@@ -1,50 +1,27 @@
 import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 
-import firebase from '../../firebase/init';
+import {styles} from './styles';
 
 import {View, TouchableOpacity, ActivityIndicator} from 'react-native';
-
-import {styles} from './styles';
 
 import TextInput from '../../components/LabelledTextInput';
 import CommonButton from '../../components/CommonButton';
 
-class LoginContainer extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
       password: '',
-      error: '',
-      loading: false,
-      userInfo: null
+      error: ''
     }
   }
 
-  loginUser() {
-    this.setState({error: '', loading: true});
-
-    const navigator = this.props.navigation;
-    const{email, password} = this.state;
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(({uid}) => {
-        this.setState({error: '', loading: false});
-        navigator.navigate('Home');
-      })
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email,password)
-          .then(({uid}) => {
-            this.setState({error: '', loading: false});
-            navigator.navigate('Home');
-          })
-          .catch((error) => this.setState({error: error.message, loading: false}))
-      });
-  }
-
   render() {
+    const {error, isLoading, loginUser} = this.props;
+
     return (
       <View style={styles.wrapper}>
         <TextInput
@@ -64,15 +41,15 @@ class LoginContainer extends Component {
           secureTextEntry={true}
         />
         {
-          this.state.loading ?
+          isLoading ?
             <ActivityIndicator
               size='large'
               color='#0F5340'
-              style={{marginBottom: 60}}
+              style={{marginBottom: 80}}
             /> :
             <CommonButton
-              onPress={() => this.loginUser()}
-              buttonText='Sign Up'
+              onPress={() => loginUser(this.state.email, this.state.password)}
+              buttonText={error || 'Sign In'}
             />
         }
       </View>
@@ -80,4 +57,4 @@ class LoginContainer extends Component {
   }
 }
 
-export default LoginContainer;
+export default Login;

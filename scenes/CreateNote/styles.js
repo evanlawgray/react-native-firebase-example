@@ -48,5 +48,10 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: '#FFF',
     fontSize: 20,
+  },
+  errorText: {
+    fontSize: 20,
+    fontStyle: 'italic',
+    color: '#F74A4D'
   }
 })

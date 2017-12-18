@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
-import LoginContainer from '../scenes/Login.js';
+import LoginContainer from '../scenes/Login';
 import NotesListContainer from '../scenes/NotesList';
 import HeaderBar from '../components/HeaderBar';
 
@@ -8,13 +8,15 @@ export const RootNavigator = StackNavigator({
   Home: {
     screen: NotesListContainer,
     navigationOptions: {
-      header: HeaderBar
+      header: HeaderBar,
+      headerTitle: 'Notes'
     }
   },
   Login: {
     screen: LoginContainer,
     navigationOptions: {
-      header: HeaderBar
+      header: HeaderBar,
+      headerTitle: 'Login'
     }
   }
 },{

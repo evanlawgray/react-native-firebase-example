@@ -15,12 +15,24 @@ export const styles = StyleSheet.create({
     width: width,
     backgroundColor: '#FFF',
     paddingTop: height * 0.03,
-    paddingHorizontal: height * 0.03
+    paddingHorizontal: height * 0.03,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  notesList: {
+    // Each note is equal to screen width minus paddingHorizontal value of notesListWrapper
+    width: width - (height * 0.03),
   },
   separator: {
     height: 0,
     borderWidth: 1,
     borderBottomWidth: 0,
     borderColor: '#D1D0D8'
+  },
+  notesPlaceholder: {
+    color: '#EFEFEF',
+    fontSize: 22,
+    fontStyle: 'italic'
   }
 })
