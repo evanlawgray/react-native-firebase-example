@@ -26,7 +26,6 @@ class NotesList extends Component {
         {
           notes.length ?
             <SectionList
-              style={styles.notesList}
               sections={notes}
               renderItem={({item}) => <ListItem itemData={item} />}
               renderSectionHeader={({section}) => <ListSectionHeader title={section.date} />}

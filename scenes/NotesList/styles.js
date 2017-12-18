@@ -18,11 +18,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: height * 0.03,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  notesList: {
-    // Each note is equal to screen width minus paddingHorizontal value of notesListWrapper
-    width: width - (height * 0.03),
+    alignItems: 'stretch'
   },
   separator: {
     height: 0,
