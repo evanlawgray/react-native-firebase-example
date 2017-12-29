@@ -27,17 +27,17 @@ class LoginContainer extends Component {
     const navigator = this.props.navigation;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(({uid}) => {
+      .then(() => {
         this.setState({error: '', loading: false});
         navigator.navigate('Home');
       })
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email,password)
-          .then(({uid}) => {
+          .then(() => {
             this.setState({error: '', loading: false});
             navigator.navigate('Home');
           })
-          .catch((error) => this.setState({error: 'Sign-in failed', loading: false}))
+          .catch(error => this.setState({error: 'Sign-in failed', loading: false}))
       });
   }
 

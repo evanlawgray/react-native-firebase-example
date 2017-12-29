@@ -57,4 +57,10 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  loginUser: PropTypes.func
+}
+
 export default Login;

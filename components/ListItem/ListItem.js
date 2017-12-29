@@ -19,7 +19,7 @@ const ListItem = ({itemData: {title, text}}) => {
 }
 
 ListItem.propTypes = {
-  itemData: PropTypes.object
+  itemData: PropTypes.objectOf(PropTypes.string)
 }
 
 export default ListItem;

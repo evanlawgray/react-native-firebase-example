@@ -39,4 +39,8 @@ class NotesList extends Component {
   }
 }
 
+NotesList.propTypes = {
+  notes: PropTypes.array
+}
+
 export default NotesList;

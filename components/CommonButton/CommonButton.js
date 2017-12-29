@@ -16,4 +16,9 @@ const CommonButton = ({onPress, buttonText}) => (
   </TouchableOpacity>
 )
 
+CommonButton.propTypes = {
+  onPress: PropTypes.func,
+  buttonText: PropTypes.string
+}
+
 export default CommonButton;

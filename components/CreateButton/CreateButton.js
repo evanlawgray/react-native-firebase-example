@@ -17,4 +17,8 @@ const CreateButton = ({onPressButton}) => (
   </TouchableOpacity>
 )
 
+CreateButton.propTypes = {
+  onPressButton: PropTypes.func
+}
+
 export default CreateButton;

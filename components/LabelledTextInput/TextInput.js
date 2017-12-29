@@ -24,4 +24,13 @@ const LabelledInput = ({label, placeholder, value, onChangeText, secureTextEntry
   </View>
 )
 
+LabelledInput.propTypes = {
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChangeText: PropTypes.func,
+  secureTextEntry: PropTypes.bool,
+  autoCapitalize: PropTypes.string
+}
+
 export default LabelledInput;

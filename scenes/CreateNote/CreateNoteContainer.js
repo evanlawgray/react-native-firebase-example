@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 
 import {db} from '../../firebase/init';
-import cuid from 'cuid';
 
 import {styles} from './styles';
 
@@ -10,7 +9,7 @@ import {View, Text, TextInput, Modal, TouchableOpacity} from 'react-native';
 
 import CommonButton from '../../components/CommonButton';
 
-//DATE HELPER FUNCTIONS
+// DATE HELPER FUNCTIONS
 
 function zeroFill(num) {
   return(num < 10 ? '0' : '') + num;
@@ -24,11 +23,13 @@ function getDateString() {
     zeroFill(date.getDate());
 }
 
+// COMPONENT
+
 class CreateNoteContainer extends Component {
   constructor(props) {
     super(props);
 
-    const userId = this.props.userId ? this.props.userId : null;
+    const userId = this.props.userId || null;
 
     this.state = {
       noteTitle: '',
@@ -51,10 +52,9 @@ class CreateNoteContainer extends Component {
           title: noteTitle,
           text: noteText,
           date: dateString
-        }).then(() => this.props.hideSelf())
-        .catch(e => {
-          throw new Error(e)
         })
+        .then(() => this.props.hideSelf())
+        .catch(e => { throw new Error(e) })
       }
     } catch(e) {
       this.setState({errorMessage: 'Sorry, this note couldn\'t be saved :' + e.message});
@@ -79,17 +79,18 @@ class CreateNoteContainer extends Component {
 
         <TextInput
           style={styles.textInput}
-          placeholder='Enter text here...'
+          placeholder='Enter note text here...'
           placeholderTextColor='#0F5340'
           multiline={true}
           onChangeText={text => this.setState({noteText: text})}
           value={this.state.noteText}
         />
+
         {
           this.state.errorMessage ?
-            <Text style={styles.errorText}>An error has ocurred</Text> :
-            null
+            <Text style={styles.errorText}>{this.state.errorMessage}</Text> : null
         }
+
         <CommonButton
           onPress={() => this.saveNote()}
           buttonText={'save'.toUpperCase()}
@@ -97,6 +98,11 @@ class CreateNoteContainer extends Component {
       </View>
     )
   }
+}
+
+CreateNoteContainer.propTypes = {
+  userId: PropTypes.string,
+  hideSelf: PropTypes.func
 }
 
 export default CreateNoteContainer;

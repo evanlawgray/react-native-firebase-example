@@ -13,4 +13,8 @@ const HeaderBar = ({scene}) => (
   </View>
 )
 
+HeaderBar.propTypes = {
+  scene: PropTypes.object
+}
+
 export default HeaderBar;
