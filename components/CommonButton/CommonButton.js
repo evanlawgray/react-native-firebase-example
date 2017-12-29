@@ -9,7 +9,8 @@ const CommonButton = ({onPress, buttonText}) => (
   <TouchableOpacity
     onPress={onPress}
     activeOpacity={0.5}
-    style={styles.commonButton}>
+    style={styles.commonButton}
+  >
     <Text style={styles.buttonText}>
       {buttonText.toUpperCase()}
     </Text>
