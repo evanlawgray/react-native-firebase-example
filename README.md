@@ -1,10 +1,10 @@
-# Notes App with Firebase (Email Auth and Real-Time Database)
+# Notes App with Firebase
 
-A basic app I made to practice using and reading/writing data using the firebase real-time database.
+A basic app I made to practice using firebase authentication and reading/writing data using the firebase real-time database.
 
 For more information on firebase, see the [firebase docs](https://firebase.google.com/docs/)
 
-![App Screenshot](/assets/screenshot.png?raw=true)
+![App Screenshot](/assets/screenshot.png?raw=true =250x)
 
 ## Functionality
 
