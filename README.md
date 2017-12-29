@@ -4,7 +4,7 @@ A basic app I made to practice using and reading/writing data using the firebase
 
 For more information on firebase, see the [firebase docs](https://firebase.google.com/docs/)
 
-![App Screenshot](/screenshot.png?raw=true)
+![App Screenshot](/assets/screenshot.png?raw=true)
 
 ## Functionality
 
