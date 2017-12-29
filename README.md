@@ -4,7 +4,7 @@ A basic app I made to practice using firebase authentication and reading/writing
 
 For more information on firebase, see the [firebase docs](https://firebase.google.com/docs/)
 
-<img alt="App Screenshot" src="/assets/screenshot.png" title="App Screenshot" width="200" />
+<img alt="App Screenshot" src="/assets/screenshot.png" title="App Screenshot" width="400" />
 
 ## Functionality
 
