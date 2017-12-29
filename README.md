@@ -4,7 +4,7 @@ A basic app I made to practice using firebase authentication and reading/writing
 
 For more information on firebase, see the [firebase docs](https://firebase.google.com/docs/)
 
-![App Screenshot](/assets/screenshot.png?raw=true =250x)
+![App Screenshot](/assets/screenshot.png =250x)
 
 ## Functionality
 
